@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 import time
 
 url = "https://storiesig.com/stories/"
-dir = "Enter your dir path with file persons.txt"
+dir = "Enter your dir path with file targets.txt"
 
 
 class StoriesParser:
@@ -48,12 +48,14 @@ class StoriesParser:
                 connect = requests.get(video_story, stream=True)
                 video = connect.content
                 if self.duplicate_checker(video):
+                    number_of_stories += 1
+                    self.operation_success = True
                     with open(self.target_dir + "\\{0}.mp4".format(number_of_stories), "wb") as file:
                         for chunk in connect.iter_content(chunk_size=1024):
                             if chunk:
                                 file.write(chunk)
         except:
-            print("Error in save_stories method:" + self.target)
+            print("Error in save_stories method: " + self.target)
             self.find_error = True
 
     def duplicate_checker(self, image):
@@ -65,7 +67,7 @@ class StoriesParser:
                         return False
             return True
         except:
-            print("Error in duplicate_checker method:" + self.target)
+            print("Error in duplicate_checker method: " + self.target)
             self.find_error = True
 
     def print_report(self):
@@ -87,7 +89,7 @@ class Main:
         self.list_for_targets = []
 
     def get_targets_list(self):
-        with open(dir.format("persons.txt")) as file:
+        with open(dir.format("targets.txt")) as file:
             for target in file:
                 self.list_for_targets.append(target)
 
@@ -98,6 +100,6 @@ class Main:
             StoriesParser(target.rstrip()).run()
             time.sleep(10)
         print("Targets processing completed")
-        
+
 
 Main().run()

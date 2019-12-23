@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup as bs
 import time
 
 url = "https://storiesig.com/stories/"
-dir = "Enter your dir with file persons.txt"
+dir = "Enter your dir path with file persons.txt"
 
 
 class StoriesParser:
@@ -98,6 +98,6 @@ class Main:
             StoriesParser(target.rstrip()).run()
             time.sleep(10)
         print("Targets processing completed")
-        a = int(input())
+        
 
 Main().run()

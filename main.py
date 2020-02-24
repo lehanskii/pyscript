@@ -102,4 +102,5 @@ class Main:
         print("Targets processing completed")
 
 
-Main().run()
+if __name__ == "__main__":
+    Main().run()

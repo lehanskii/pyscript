@@ -30,8 +30,7 @@ class StoriesParser:
 
     def save_stories(self):
         try:
-            if (len(self.image_stories) == 0) and (len(self.video_stories) == 0):
-                time.sleep(10)
+            if (len(self.image_stories) == 0) and (len(self.video_stories) == 0:
                 return
             number_of_stories = len([f for f in os.listdir(self.target_dir)])
             for image_story in self.image_stories:
